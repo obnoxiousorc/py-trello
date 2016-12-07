@@ -2,6 +2,7 @@
 from __future__ import with_statement, print_function, absolute_import
 from trello.compat import force_str
 from trello.member import Member
+import trello.board
 
 
 class Organization(object):
@@ -55,7 +56,7 @@ class Organization(object):
         json_obj = self.client.fetch_json(
             '/organizations/' + self.id + '/boards',
             query_params={'lists': 'none', 'filter': list_filter})
-        return [Board.from_json(organization=self, json_obj=obj) for obj in json_obj]
+        return [trello.board.Board.from_json(organization=self, json_obj=obj) for obj in json_obj]
 
     def get_board(self, field_name):
         """Get board
@@ -66,7 +67,7 @@ class Organization(object):
         json_obj = self.client.fetch_json(
             '/organizations/' + self.id + '/boards',
             query_params={'filter': 'open', 'fields': field_name})
-        return [Board.from_json(organization=self, json_obj=obj) for obj in json_obj]
+        return [trello.board.Board.from_json(organization=self, json_obj=obj) for obj in json_obj]
 
     def get_members(self):
         json_obj = self.client.fetch_json(
