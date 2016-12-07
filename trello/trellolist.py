@@ -119,5 +119,24 @@ class List(object):
                 'idBoard': board.id})
         self.board = board
 
+    def copy(self, name=None):
+        """Make a copy of this list
+
+        :name: Name for the copy (same by default)
+        :return: the new list
+        """
+        if not name:
+            name = self.name
+        jsonObj = self.client.fetch_json(
+            '/lists/',
+            http_method='POST',
+            query_params={
+                'closed': self.closed,
+                'idBoard': self.board.id,
+                'idListSource': self.id,
+                'name': name,
+                'pos': self.pos})
+        return self.client.get_board(jsonObj['idBoard']).get_list(jsonObj['id'])
+
 
 from trello.card import Card
