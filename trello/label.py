@@ -34,6 +34,12 @@ class Label(object):
     def __repr__(self):
         return force_str(u'<Label %s>' % self.name)
 
+    def delete(self):
+        """Delete this label"""
+        self.client.fetch_json(
+            '/labels/' + self.id,
+            http_method='DELETE')
+
     def fetch(self):
         """Fetch all attributes for this label"""
         json_obj = self.client.fetch_json('/labels/' + self.id)
