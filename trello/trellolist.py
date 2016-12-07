@@ -107,5 +107,17 @@ class List(object):
     def cardsCnt(self):
         return len(self.list_cards())
 
+    def move_to_board(self, board):
+        """Move this list to another board
+
+        :board: The board to move to
+        """
+        self.client.fetch_json(
+            '/lists/' + self.id,
+            http_method='PUT',
+            query_params={
+                'idBoard': board.id})
+        self.board = board
+
 
 from trello.card import Card
