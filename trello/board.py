@@ -142,6 +142,17 @@ class Board(object):
                 'idMember': member.id,
                 'type': memberType})
 
+    def remove_member(self, member):
+        """Remove a member to this board
+
+        :member: the Member to add
+        """
+        self.client.fetch_json(
+            '/boards/' + self.id + '/members/' + member.id,
+            http_method='DELETE',
+            query_params={
+                'idMember': member.id})
+
     def all_lists(self):
         """Returns all lists on this board
 
