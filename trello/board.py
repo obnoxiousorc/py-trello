@@ -129,6 +129,19 @@ class Board(object):
         obj = self.client.fetch_json('/lists/' + list_id)
         return List.from_json(board=self, json_obj=obj)
 
+    def add_member(self, member, memberType='normal'):
+        """Add a member to this board
+
+        :member: the Member to add
+        :memberType: either 'normal' or 'admin'
+        """
+        self.client.fetch_json(
+            '/boards/' + self.id + '/members/' + member.id,
+            http_method='PUT',
+            query_params={
+                'idMember': member.id,
+                'type': memberType})
+
     def all_lists(self):
         """Returns all lists on this board
 
