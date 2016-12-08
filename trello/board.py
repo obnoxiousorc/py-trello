@@ -378,3 +378,19 @@ class Board(object):
 
         self.actions = json_obj
         return self.actions
+
+    def enable_plugin(self, plugin_id):
+        """Enable plugin for this board
+
+        :plugin_id: Name of plugin to be enabled
+        """
+        self.client.fetch_json(
+            '/boards/' + self.id + '/boardPlugins',
+            http_method='POST',
+            query_params={'idPlugin': plugin_id})
+
+    def get_board_plugins(self):
+        """Get list of enabled plugins"""
+        json_obj = self.client.fetch_json(
+            '/boards/' + self.id + '/boardPlugins')
+        return json_obj
