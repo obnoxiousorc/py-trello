@@ -60,6 +60,7 @@ class Board(object):
         board.description = json_obj.get('desc', '')
         board.closed = json_obj['closed']
         board.url = json_obj['url']
+        board.prefs = json_obj['prefs']
 
         try:
             board.date_last_activity = dateparser.parse(json_obj['dateLastActivity'])
@@ -78,6 +79,7 @@ class Board(object):
         self.description = json_obj.get('desc', '')
         self.closed = json_obj['closed']
         self.url = json_obj['url']
+        self.prefs = json_obj['prefs']
         try:
             self.date_last_activity = dateparser.parse(json_obj['dateLastActivity'])
         except:
