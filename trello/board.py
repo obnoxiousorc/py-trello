@@ -61,6 +61,7 @@ class Board(object):
         board.closed = json_obj['closed']
         board.url = json_obj['url']
         board.prefs = json_obj['prefs']
+        board.organization_id = json_obj['idOrganization']
 
         try:
             board.date_last_activity = dateparser.parse(json_obj['dateLastActivity'])
@@ -80,6 +81,7 @@ class Board(object):
         self.closed = json_obj['closed']
         self.url = json_obj['url']
         self.prefs = json_obj['prefs']
+        self.organization_id = json_obj['idOrganization']
         try:
             self.date_last_activity = dateparser.parse(json_obj['dateLastActivity'])
         except:
